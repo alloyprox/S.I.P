@@ -5,6 +5,8 @@ I’m 17 still in high school and before python, I only really learned small amo
 
 [ HOW TO USE ]
 
+Fisrt off, I used Pycharm to make this with terminal emulator turned on (os and sys didn't work for me unless I turned them on)
+
 There is only 4 functions right now
 
 do, end, say, !s
