@@ -43,6 +43,12 @@ This code would do the same thing, But 10 Times
 
 Oh and also if your wondering why it's named Sip, it just stands for Super interpreted Python
 
-Hope you understand all that :D
-My goal is to make it so you can make at least a simple text based game
-So this will get updated in the future!
+[ Future Ideas ]
+So by the end of this project, I want to be able to create a simple text base game with this
+
+I also want it to read from a file instead of being edited inside the program itself...
+I might figure out something
+
+Varibles Probobly
+
+Nothing else I can think of
