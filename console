@@ -1,0 +1,117 @@
+import os
+import sys
+
+
+print("main.sip")
+loop = True
+main = []
+line = 0
+
+# DEFS
+def say(line_after):
+    list1 = []
+    for letter in line_after:
+        if letter == "%":
+            break
+        elif letter == "^":
+            print(f"Syntax Error : Forgot % after String")
+            sys.exit()
+        else:
+            list1.append(letter)
+    print(''.join(list1))
+
+def check(word, match):
+    if word[0:len(match)] == match:
+        return True
+    else:
+        return False
+
+def get_index(word, list_used):
+    index_num = 0
+    for item in list_used:
+        is_letter = []
+        for char in item:
+            if char.isdigit():
+                continue
+            else:
+                is_letter.append(char)
+        index_num += 1
+        if ''.join(is_letter) == word:
+            return index_num
+        else:
+            continue
+
+def is_in(word, list_used):
+    for item in list_used:
+        is_letter = []
+        for char in item:
+            if char.isdigit():
+                continue
+            else:
+                is_letter.append(char)
+
+        if ''.join(is_letter) == word:
+            return True
+        else:
+            continue
+
+# Write
+write_num = 1
+while loop:
+    line = str(input(f"{write_num} ") + str(write_num) + "^")
+    if check(line, "!s"):
+        loop = False
+        break
+    else:
+        main.append(line)
+    write_num += 1
+
+os.system("cls")
+
+def run(code):
+
+    # Other
+    in_while = []
+    cur = 0
+    while_cur = 0
+    start_while = 0
+    code_iter = iter(code)
+    #Run Code
+
+    for lines in code:
+
+        if check(lines, "do"):
+            while_cur += 1
+            list1 = []
+            for num in code[start_while + while_cur]:
+                if num == "%":
+                    break
+                elif num == "^":
+                    print(f"Syntax Error : Forgot % after Number")
+                    sys.exit()
+                else:
+                    list1.append(num)
+            loop_num = int(''.join(list1))
+            for i in range(loop_num-1):
+                start_while = code.index(lines)
+
+                for i in range(len(main) - cur):
+                    while_cur += 1
+                    if check(code[start_while + while_cur], "end"):
+                        break
+                    else:
+                        in_while.append(code[start_while + while_cur])
+                while_cur = start_while
+
+            run(in_while)
+            if is_in("end", code):
+                cur = get_index("end", code) + 1
+                for i in range(get_index("end", code) - start_while):
+                    continue
+
+        if check(lines, "say"):
+            say(code[code.index(lines)+1])
+
+        cur += 1
+
+run(main)
